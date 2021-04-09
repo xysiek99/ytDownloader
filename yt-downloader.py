@@ -6,7 +6,7 @@ sound_options = {'format': 'bestaudio'}
 video = yt.YoutubeDL(video_options)
 sound = yt.YoutubeDL(sound_options)
 
-url = "https://www.youtube.com/watch?v=ua7TBlFbBjg&ab_channel=Franck"
+url = "https://www.youtube.com/watch?v=i_Ruo6jSe8Q&ab_channel=Halomalo337L"
 
 vinfo = video.extract_info(url, download=False)
 
