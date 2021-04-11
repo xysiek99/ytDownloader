@@ -13,9 +13,13 @@ class TestLayout(Screen):
 
         self.link = Builder.load_string(yt_download_link)
         self.toolbar = Builder.load_string(yt_toolbar)
+        self.video_btn = Builder.load_string(video_button)
+        self.sound_btn = Builder.load_string(sound_button)
 
         self.add_widget(self.link)
         self.add_widget(self.toolbar)
+        self.add_widget(self.video_btn)
+        self.add_widget(self.sound_btn)
 
 class TestApp(MDApp):
     def build(self):        
