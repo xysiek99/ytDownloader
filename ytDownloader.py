@@ -25,3 +25,12 @@ sound.download([url])
 # https://stackoverflow.com/questions/49246598/youtube-dl-get-audio-link-with-python
 # https://github.com/ytdl-org/youtube-dl/blob/master/README.md#embedding-youtube-dl
 # https://github.com/ytdl-org/youtube-dl/blob/master/README.md#configuration
+
+def downloadVideo(link):
+    video.download([link])
+
+def downloadSound(link):
+    sound.download([link])
+
+def ignoreErrors():
+    pass
