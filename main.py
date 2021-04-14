@@ -35,7 +35,8 @@ class TestApp(MDApp):
         video_btn = Builder.load_string(video_button)
         sound_btn = Builder.load_string(sound_button)
 
-        sound_btn.bind(on_press=self.callback)
+        video_btn.bind(on_press=self.download_video)
+        sound_btn.bind(on_press=self.download_sound)
 
         screen.add_widget(link)
         screen.add_widget(toolbar)
@@ -44,7 +45,10 @@ class TestApp(MDApp):
 
         return screen
 
-    def callback(self, instance):
-        print("Hello!")
+    def download_video(self, instance):
+        print("Downloading video")    
+
+    def download_sound(self, instance):
+        print("Downloading sound")
 
 TestApp().run()
