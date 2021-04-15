@@ -1,7 +1,8 @@
 from kivy.lang import Builder
+from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
-from kivy.core.window import Window
+from kivymd.uix.dialog import MDDialog
 
 from ytDownloaderLayout import *
 from ytDownloader import downloadItem
@@ -33,7 +34,10 @@ class YouTubeDownloaderApp(MDApp):
     def download_video(self, instance):
         download_string = self.link.text
         downloadItem(download_string, "video")
-        print(download_string)    
+        print(download_string)
+
+        #dialog = MDDialog(title="Info", text="downloaded succesfully!")
+        #dialog.open()    
 
     def download_sound(self, instance):
         download_string = self.link.text

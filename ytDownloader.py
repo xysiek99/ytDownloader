@@ -1,6 +1,13 @@
 import youtube_dl as yt
 
+video_options = {'outtmpl': '%(title)s.%(ext)s'}
+sound_options = {'format': 'bestaudio', 'outtmpl': '%(title)s.mp3'}
+
+#video = yt.YoutubeDL(video_options)
+#sound = yt.YoutubeDL(sound_options)
+
 url = "https://www.youtube.com/watch?v=BOYdZ0GyQFQ&ab_channel=PearlJam"
+chuj = "https://www.youtube.com/watch?v=BOYdZ0GyQFQ&ab_channel=PearlJam"
 
 # How to get information about the video
 # As it is a dict use below instead of: vinfo.title
@@ -28,3 +35,7 @@ def downloadItem(link, type):
     
     item = yt.YoutubeDL(options)
     item.download([link])
+
+def getTitle(link):
+    material = yt.YoutubeDL().extract_info(url=link, download=False)
+    return material['title']
