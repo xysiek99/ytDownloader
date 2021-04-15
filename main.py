@@ -4,33 +4,18 @@ from kivymd.uix.screen import MDScreen
 from kivy.core.window import Window
 
 from ytDownloaderLayout import *
+from ytDownloader import downloadItem
 
 Window.size = (800,520)
 
-'''
-class TestLayout(MDScreen):
-    def __init__(self, **kwargs):
-        super(TestLayout, self).__init__(**kwargs)
-
-        link = Builder.load_string(yt_download_link)
-        toolbar = Builder.load_string(yt_toolbar)
-        video_btn = Builder.load_string(video_button)
-        sound_btn = Builder.load_string(sound_button)
-
-        self.add_widget(link)
-        self.add_widget(toolbar)
-        self.add_widget(video_btn)
-        self.add_widget(sound_btn)
-'''
-
-class TestApp(MDApp):
+class YouTubeDownloaderApp(MDApp):
     def build(self):        
         self.theme_cls.primary_palette = "Yellow"
         self.theme_cls.theme_style = "Dark"
 
         screen = MDScreen()
 
-        link = Builder.load_string(yt_download_link)
+        self.link = Builder.load_string(yt_download_link)
         toolbar = Builder.load_string(yt_toolbar)
         video_btn = Builder.load_string(video_button)
         sound_btn = Builder.load_string(sound_button)
@@ -38,7 +23,7 @@ class TestApp(MDApp):
         video_btn.bind(on_press=self.download_video)
         sound_btn.bind(on_press=self.download_sound)
 
-        screen.add_widget(link)
+        screen.add_widget(self.link)
         screen.add_widget(toolbar)
         screen.add_widget(video_btn)
         screen.add_widget(sound_btn)
@@ -46,9 +31,16 @@ class TestApp(MDApp):
         return screen
 
     def download_video(self, instance):
-        print("Downloading video")    
+        download_string = self.link.text
+        downloadItem(download_string, "video")
+        print(download_string)    
 
     def download_sound(self, instance):
-        print("Downloading sound")
+        download_string = self.link.text
+        downloadItem(download_string, "sound")
+        print(download_string)    
 
-TestApp().run()
+    def message_box(self, message_text):
+        pass
+
+YouTubeDownloaderApp().run()
