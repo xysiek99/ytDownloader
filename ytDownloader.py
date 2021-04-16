@@ -7,6 +7,9 @@ import youtube_dl as yt
 # https://github.com/ytdl-org/youtube-dl/blob/master/README.md#configuration
 
 def ignoreErrors():
+    # AttributeError            IGNORE
+    # socket.gaierror           show message
+    # urllib.error.URLError     show message
     pass
 
 def downloadItem(link, type):    

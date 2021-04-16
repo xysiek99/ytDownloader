@@ -5,7 +5,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.dialog import MDDialog
 
 from ytDownloaderLayout import *
-from ytDownloader import downloadItem
+from ytDownloader import downloadItem, getTitle
 
 Window.size = (800,520)
 
@@ -31,20 +31,27 @@ class YouTubeDownloaderApp(MDApp):
 
         return screen
 
-    def download_video(self, instance):
-        download_string = self.link.text
-        downloadItem(download_string, "video")
-        print(download_string)
+    def close(self, event):
+        self.dialog.dismiss()
 
-        #dialog = MDDialog(title="Info", text="downloaded succesfully!")
-        #dialog.open()    
+    def download_video(self, instance):
+        try:
+            download_string = self.link.text
+            downloadItem(download_string, "video")
+            message = getTitle(download_string)
+        except AttributeError: 
+            pass
+        except:
+            message = "Error occured during downloading file"
 
     def download_sound(self, instance):
-        download_string = self.link.text
-        downloadItem(download_string, "sound")
-        print(download_string)    
-
-    def message_box(self, message_text):
-        pass
+        try:
+            download_string = self.link.text
+            downloadItem(download_string, "sound")
+            message = getTitle(download_string)
+        except AttributeError:
+            pass
+        except:
+            message = "Error occured during downloading file"
 
 YouTubeDownloaderApp().run()
