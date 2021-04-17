@@ -3,6 +3,7 @@ from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDRectangleFlatButton
 
 from ytDownloaderLayout import *
 from ytDownloader import downloadItem, getTitle
@@ -31,27 +32,49 @@ class YouTubeDownloaderApp(MDApp):
 
         return screen
 
+    def show_message(self, message):
+        ok_btn = MDRectangleFlatButton(text="OK")
+        ok_btn.bind(on_press=self.close)
+
+        self.dialog = MDDialog (
+        title="INFO",
+        text=message,
+        size_hint=(.8, 1),
+        buttons=[ok_btn]
+        )
+        self.dialog.open()
+
     def close(self, event):
         self.dialog.dismiss()
 
     def download_video(self, instance):
+        download_string = self.link.text
+        video_title = getTitle(download_string)
+        success_message = f"{video_title} downloaded succesfully!"
+        error_message = "Error occured during downloading file"
+
         try:
-            download_string = self.link.text
             downloadItem(download_string, "video")
-            message = getTitle(download_string)
+            self.show_message(success_message)
         except AttributeError: 
-            pass
+            self.show_message(success_message)
         except:
-            message = "Error occured during downloading file"
+            self.show_message(error_message)
 
     def download_sound(self, instance):
+        download_string = self.link.text
+        video_title = getTitle(download_string)
+        success_message = f"{video_title} downloaded succesfully!"
+        error_message = "Error occured during downloading file"
+
         try:
-            download_string = self.link.text
             downloadItem(download_string, "sound")
-            message = getTitle(download_string)
-        except AttributeError:
-            pass
+            self.show_message(success_message)
+        except AttributeError: 
+            self.show_message(success_message)
         except:
-            message = "Error occured during downloading file"
+            self.show_message(error_message)
 
 YouTubeDownloaderApp().run()
+
+# https://www.youtube.com/watch?v=im9XuJJXylw&ab_channel=RetroTVCentral
