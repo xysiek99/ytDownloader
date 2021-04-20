@@ -25,5 +25,7 @@ def checkUrl(link):
         response = urllib.request.urlopen(link)
         if link.startswith("https://www.youtube") and response.code == 200:
             return True
+        else:
+            return False
     except:
         return False
