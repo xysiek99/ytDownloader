@@ -11,6 +11,8 @@ from ytDownloader import downloadItem, getTitle, checkUrl
 Window.size = (800,520)
 
 class YouTubeDownloaderApp(MDApp):
+    dialog = None
+
     def build(self):        
         self.theme_cls.primary_palette = "Yellow"
         self.theme_cls.theme_style = "Dark"
@@ -38,7 +40,6 @@ class YouTubeDownloaderApp(MDApp):
 
         self.dialog = MDDialog (
         title="INFO",
-        md_bg_color=[1,1,1,1],
         text=message,
         size_hint=(.8, 1),
         buttons=[ok_btn]
@@ -53,23 +54,21 @@ class YouTubeDownloaderApp(MDApp):
 
         success_message = "Item downloaded succesfully!"
         error_message = "Error occured during downloading file"
-        url_error_message = "URL not found! Check if it is correct"
+        url_error_message = "YouTube URL not found! Check if it is correct"
 
         if checkUrl(download_string):
-            print(checkUrl(download_string))
             video_title = getTitle(download_string)
             try:
                 downloadItem(download_string, "video")
-                print(success_message)
+                self.show_message(success_message)
             except AttributeError: 
-                print(success_message)
+                self.show_message(success_message)
             except TypeError:
                 pass            
             except:
-                print(error_message)
+                self.show_message(error_message)
         else:
-            print(checkUrl(download_string))
-            print(url_error_message)
+            self.show_message(url_error_message)
 
     def download_sound(self, instance):
         download_string = self.link.text
@@ -81,15 +80,15 @@ class YouTubeDownloaderApp(MDApp):
         if checkUrl(download_string):
             video_title = getTitle(download_string)
             try:
-                downloadItem(download_string, "video")
-                print(success_message)
+                downloadItem(download_string, "sound")
+                self.show_message(success_message)
             except AttributeError: 
-                print(success_message)
+                self.show_message(success_message)
             except TypeError:
                 pass            
             except:
-                print(error_message)
+                self.show_message(error_message)
         else:
-            print(url_error_message)
+            self.show_message(url_error_message)
 
 YouTubeDownloaderApp().run()
